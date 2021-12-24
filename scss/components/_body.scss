@@ -2,18 +2,20 @@ body {
     background-color: $blue;
     color: $grey;
 
+    @mixin width ($min-width, $max-width){
+        min-width: $min-width;
+        max-width: $max-width;
+    }
     .fotoMolino {
         width: 45%;
         img {
             width: 90%;
-            min-width: 200px;
-            max-width: 400px;
+            @include width(200px, 400px);
         }
     }
     iframe {
         width: 90%;
-        min-width: 300px;
-        max-width: 500px;
+        @include width(300px, 500px);
     }
 
     /* --- ANIMACION H1 ---*/
@@ -57,9 +59,15 @@ body {
     h2 {
         margin: 0 !important;
     }
+
+    $span :(
+        color : $orange,
+        font-weight : 500
+    );
+
     span {
-        color: $orange;
-        font-weight: 500;
+        color: map-get($span, color);
+        font-weight: map-get($span, font-weight);
     }
 
     .textoServicios {
@@ -90,8 +98,7 @@ body {
     }
     .quienesSomos {
         width: 90%;
-        min-width: 350px;
-        max-width: 450px;
+        @include width(350px, 450px);
         margin: 5rem 2rem;
     }
     .textoQuienes {
@@ -102,17 +109,15 @@ body {
     }
     .imgEquipo {
         width: 90%;
-        min-width: 350px;
-        max-width: 600px;
+        @include width(350px, 600px);
     }
 
     .textoMision {
         max-width: 900px;
     }
     .imgClientes {
-        width: 90%;
-        min-width: 350px;
-        max-width: 600px;
+        @extend .imgEquipo;
+        border-radius: 5px;
     }
 
     .listaClientes {
@@ -135,16 +140,17 @@ body {
 
         border: $grey solid 2px;
         border-radius: 10px;
+        .formButton {
+            width: 30%;
+            align-self: center;
+            margin: 0.2rem;
+            background-color: $blue;
+            color: $orange;
+            border: $orange solid 2px;
+            border-radius: 5px;
+        }
     }
-    .formButton {
-        width: 30%;
-        align-self: center;
-        margin: 0.2rem;
-        background-color: $blue;
-        color: $orange;
-        border: $orange solid 2px;
-        border-radius: 5px;
-    }
+    
 
     .whatsapp {
         width: 15%;
